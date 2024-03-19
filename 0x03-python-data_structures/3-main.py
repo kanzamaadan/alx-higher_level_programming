@@ -1,7 +1,5 @@
 #!/usr/bin/python3
+print_reversed_list_integer = __import__('3-print_reversed_list_integer').print_reversed_list_integer
 
-def print_reversed_list_integer(my_list=[]):
-    # Start the loop from len(my_list) - 1 down to 0 (inclusive)
-    for i in range(len(my_list) - 1, -1, -1):
-        # Print the integer at index i of the list
-        print("{}".format(my_list[i]))
+my_list = [1, 2, 3, 4, 5]
+print_reversed_list_integer(my_list)
