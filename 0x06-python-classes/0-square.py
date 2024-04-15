@@ -1,16 +1,14 @@
 #!/usr/bin/python3
+"""Square class to represent a square"""
 
-class Square:
-    """
-    This class represents a square.
 
-    Attributes:
-        None
+class Square():
+    """Class to represent a square"""
 
-    Methods:
-        Square(): A placeholder method.
-    """
+    def __init__(self, size=0):
+        """Initialize square with a specific size."""
+        self.__size = size
 
-    def Square(self):
-        """Placeholder method for the Square class."""
-        pass
+    def dict_(self):
+        """Return dictionary representation of the Square instance."""
+        return {'size': self.__size}
