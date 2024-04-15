@@ -11,4 +11,4 @@ def lazy_matrix_mul(m_a, m_b):
     Returns:
         Return the multiplication of two matrices
     """
-    return (np.matmult(m_a, m_b))
+    return (np.matmul(m_a, m_b))
