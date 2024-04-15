@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-""" Working on oop with python """
 
+class Square:
+    """
+    This class represents a square.
 
-class Square():
-    """Class representing a square"""
+    Attributes:
+        None
 
-    def __init__(self, size):
-        """ initialize the class
+    Methods:
+        Square(): A placeholder method.
+    """
 
-        Args:
-           size (int): size of the square
-        """
-        self.__size = size
+    def Square(self):
+        """Placeholder method for the Square class."""
+        pass
