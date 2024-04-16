@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-"""class prevents the user from dynamically creating
-    new instance attributes
+"""
+Module for a class that prevents dynamic attributes creation
+
 """
 
+
 class LockedClass():
-    """class dynamically creating new instance attributes"""
-    __slots__ = ['first_name'] 
+    """Class to prevent dynamic attributes creation"""
+    __slots__ = ['first_name']
 
     def __init__(self):
-        """initialize method"""
+        """Init method"""
         pass
