@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""defines function that writes a string to a text file"""
+"""defines function that appends a string to a text file"""
 
 
 def append_write(filename="", text=""):
-    """writes a string to a text file (UTF8) and
-    returns the number of characters written"""
+    """function that appends a string at the end
+    of a text file (UTF8) and returns the number
+    of characters added"""
     with open(filename, "a", encoding="utf-8") as f:
-        return(f.write(text))
+        return (f.write(text))
