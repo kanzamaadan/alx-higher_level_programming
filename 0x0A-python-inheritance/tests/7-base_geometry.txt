@@ -1,68 +1,78 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
->>> type(bg)
-<class '7-base_geometry.BaseGeometry'>
 
->>> print(bg)  # doctest: +ELLIPSIS
-<7-base_geometry.BaseGeometry object at ...>
+>>> isinstance(bg, BaseGeometry)
+True
 
->>> bg = BaseGeometry(None)
+>>> bg.area(8)
 Traceback (most recent call last):
-    TypeError: object() takes no parameters
-
->>> bg = BaseGeometry()
->>> print(bg.area)  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-<bound method BaseGeometry.area of <7-base_geometry.BaseGeometry object at...>>
+            ...
+TypeError: area() takes 1 positional argument but 2 were given
 
 >>> bg.area()
 Traceback (most recent call last):
-    Exception: area() is not implemented
+            ...
+Exception: area() is not implemented
 
->>> print(bg.integer_validator)  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-<bound method BaseGeometry.integer_validator of <7-base_geometry.BaseGeometry object at...>>
-
->>> bg.integer_validator("valid number", 1)
-
->>> bg.integer_validator("invalid number", "number")
+>>> bg.__class__.area()
 Traceback (most recent call last):
-    TypeError: invalid number must be an integer
+            ...
+TypeError: area() missing 1 required positional argument: 'self'
 
->>> bg.integer_validator("another invalid", True)
+>>> bg.integer_validator()
 Traceback (most recent call last):
-    TypeError: another invalid must be an integer
+            ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
->>> bg.integer_validator("invalid tuple", (1,))
+>>> bg.integer_validator(1, 3)
+>>> bg.integer_validator(5, 2, 1)
 Traceback (most recent call last):
-    TypeError: invalid tuple must be an integer
+            ...
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
 
->>> bg.integer_validator("and another", [3])
+>>> bg.integer_validator("Baa", {3, 2})
 Traceback (most recent call last):
-    TypeError: and another must be an integer
+            ...
+TypeError: Baa must be an integer
 
->>> bg.integer_validator("more invalid testing", {3, 4})
-Traceback (most recent call last):
-    TypeError: more invalid testing must be an integer
+>>> bg.integer_validator(None, 10)
 
->>> bg.integer_validator("absolutely every possible invalid", None)
-Traceback (most recent call last):
-    TypeError: absolutely every possible invalid must be an integer
 
->>> bg.integer_validator("invalid int", -1)
-Traceback (most recent call last):
-    ValueError: invalid int must be greater than 0
+>>> bg.integer_validator("", 5)
 
->>> bg.integer_validator("invalid int", 0)
-Traceback (most recent call last):
-    ValueError: invalid int must be greater than 0
+>>> bg.integer_validator("Musa", 98)
 
->>> bg.integer_validator()  # doctest: +NORMALIZE_WHITESPACE
+>>> bg.integer_validator("test", -9999)
 Traceback (most recent call last):
-    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+            ...
+ValueError: test must be greater than 0
 
->>> bg.integer_validator(None)  # doctest: +NORMALIZE_WHITESPACE
+>>> bg.integer_validator("test", 0)
 Traceback (most recent call last):
-    TypeError: integer_validator() missing 1 required positional argument: 'value'
+            ...
+ValueError: test must be greater than 0
 
->>> bg.integer_validator({"a": 1}, (1, 2))
+>>> bg.integer_validator("test", "6")
 Traceback (most recent call last):
-    TypeError: {'a': 1} must be an integer
+            ...
+TypeError: test must be an integer
+
+>>> bg.integer_validator("test", (6,))
+Traceback (most recent call last):
+            ...
+TypeError: test must be an integer
+
+>>> bg.integer_validator("as", [5])
+Traceback (most recent call last):
+            ...
+TypeError: as must be an integer
+
+>>> bg.integer_validator("char", False)
+Traceback (most recent call last):
+            ...
+TypeError: char must be an integer
+
+>>> bg.integer_validator("empty", None)
+Traceback (most recent call last):
+            ...
+TypeError: empty must be an integer
