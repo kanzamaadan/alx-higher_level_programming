@@ -80,7 +80,7 @@ class Rectangle(Base):
         for i in range(self.height):
             rec += " " * self.x
             rec += ("#" * self.width) + "\n"
-        print(rectangle, end='')
+        print(rec, end='')
 
     def __str__(self):
         """returns [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
