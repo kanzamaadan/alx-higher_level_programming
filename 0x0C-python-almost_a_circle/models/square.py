@@ -24,3 +24,13 @@ class Square(Rectangle):
         """returns [Square] (<id>) <x>/<y> - <size>"""
         return ("[Square] ({}) {}/{} - {}"
                 .format(self.id, self.x, self.y, self.width))
+
+    def update(self, *args, **kwargs):
+        """ assigns an argument to each attribute"""
+        if args:
+            attrs = ['id', 'size', 'x', 'y']
+            for attr, value in zip(attrs, args):
+                setattr(self, attr, value)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
