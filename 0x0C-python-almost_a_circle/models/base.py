@@ -66,7 +66,7 @@ class Base():
         if not data:
             return []
         dic_list = cls.from_json_string(data)
-        for item in dic_list:
-            instance = cls.create(**item)
+        for i in range(len(dic_list)):
+            instance = cls.create(**dic_list[i])
             instances.append(instance)
         return instances
