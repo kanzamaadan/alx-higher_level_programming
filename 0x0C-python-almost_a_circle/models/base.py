@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module that contains class Base """
 import json
+import os.path
 
 
 class Base():
@@ -58,7 +59,7 @@ class Base():
     def load_from_file(cls):
         """returns a list of instances"""
         filename = cls.__name__ + ".json"
-        if filename is None:
+        if os.path.exists(filename) is False:
             return []
 
         with open(filename, "r") as f:
