@@ -2,6 +2,7 @@
 """ Module that contains class Base """
 import json
 import os.path
+import csv
 
 
 class Base():
@@ -73,3 +74,58 @@ class Base():
             instances.append(instance)
 
         return instances
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        filename = "{}.csv".format(cls.__name__)
+        if cls.__name__ == "Rectangle":
+            list_dict = [0, 0, 0, 0, 0]
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_dict = [0, 0, 0, 0]
+            list_keys = ['id', 'size', 'x', 'y']
+
+        obj_attr = []
+
+        if not list_objs:
+            pass
+        else:
+            for obj in list_objs:
+                for k in range(len(list_keys)):
+                    list_dict[k] = obj.to_dictionary()[list_keys[k]]
+                obj_attr.append(list_dict[:])
+
+        with open(filename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerows(obj_attr)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        filename = "{}.csv".format(cls.__name__)
+
+        if not os.path.exists(filename):
+            return []
+
+        with open(filename, 'r') as f:
+            reader = csv.reader(f)
+            csv_list = list(reader)
+
+        if cls.__name__ == "Rectangle":
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_keys = ['id', 'size', 'x', 'y']
+
+        obj_attr = []
+
+        for csv_elem in csv_list:
+            csv_dic = {}
+            for k in enumerate(csv_elem):
+                csv_dic[list_keys[k[0]]] = int(k[1])
+            obj_attr.append(csv_dic)
+
+        list_ins = []
+
+        for i in range(len(obj_attr)):
+            list_ins.append(cls.create(**obj_attr[i]))
+
+        return list_ins
